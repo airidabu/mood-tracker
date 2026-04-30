@@ -27,7 +27,7 @@ function App() {
       </header>
       <main>
         <h2>Choose Your Mood Today</h2>
-        <div>
+        <div className="moodContainer">
           <button>{MOODS[0].emoji}</button>
           <button>{MOODS[1].emoji}</button>
           <button>{MOODS[2].emoji}</button>

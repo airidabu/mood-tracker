@@ -6,4 +6,7 @@
 
 body {
     margin: 0;
+    font-family: "Sniglet", system-ui;
+    font-style: normal;
+    font-weight: 400;
 }
