@@ -8,10 +8,10 @@ function App() {
       <main>
         <h2>Choose Your Mood Today</h2>
         <div>
-          <button>Mood 1</button>
-          <button>Mood 2</button>
-          <button>Mood 3</button>
-          <button>Mood 4</button>
+          <button>&#128565;</button>
+          <button>&#128542;</button>
+          <button>&#128524;</button>
+          <button>&#128513;</button>
         </div>
       </main>
       <footer>
