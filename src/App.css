@@ -37,3 +37,7 @@ main {
 .moodContainer button:hover {
     background-color: #C8E7E0;
 }
+
+.chosenMood {
+    font-size: 42px;
+}

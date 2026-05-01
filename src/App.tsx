@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 const MOODS = [
@@ -20,6 +21,13 @@ const MOODS = [
 ]
 
 function App() {
+  const [moodState, setMoodState] = useState<string | null>(null);
+
+  function handleMoodState(e: React.MouseEvent<HTMLButtonElement>) {
+    const mood = e.currentTarget.value;
+    setMoodState(mood);
+  }
+
   return (
     <div className="container">
       <header>
@@ -29,9 +37,11 @@ function App() {
         <h2>Choose Your Mood Today</h2>
         <div className="moodContainer">
           {
-            MOODS.map(mood =>
-              <button key={mood.value} value={mood.value}>{mood.emoji}</button>
-            )
+            moodState === null ?
+              MOODS.map(mood =>
+                <button key={mood.value} value={mood.emoji} onClick={handleMoodState}>{mood.emoji}</button>
+              ) :
+              <div className="chosenMood">My mood is {moodState}</div>
           }
         </div>
       </main>
