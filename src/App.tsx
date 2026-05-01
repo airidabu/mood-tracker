@@ -28,6 +28,10 @@ function App() {
     setMoodState(mood);
   }
 
+  function findMood() {
+    return MOODS.find((mood) => mood.value === moodState)?.emoji
+  }
+
   return (
     <div className="container">
       <header>
@@ -39,9 +43,9 @@ function App() {
           {
             moodState === null ?
               MOODS.map(mood =>
-                <button key={mood.value} value={mood.emoji} onClick={handleMoodState}>{mood.emoji}</button>
+                <button key={mood.value} value={mood.value} onClick={handleMoodState}>{mood.emoji}</button>
               ) :
-              <div className="chosenMood">My mood is {moodState}</div>
+              <div className="chosenMood">My mood is {findMood()}</div>
           }
         </div>
       </main>
