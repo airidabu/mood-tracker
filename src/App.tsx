@@ -28,10 +28,11 @@ function App() {
       <main>
         <h2>Choose Your Mood Today</h2>
         <div className="moodContainer">
-          <button>{MOODS[0].emoji}</button>
-          <button>{MOODS[1].emoji}</button>
-          <button>{MOODS[2].emoji}</button>
-          <button>{MOODS[3].emoji}</button>
+          {
+            MOODS.map(mood =>
+              <button key={mood.value} value={mood.value}>{mood.emoji}</button>
+            )
+          }
         </div>
       </main>
       <footer>
