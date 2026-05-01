@@ -28,7 +28,7 @@ function App() {
     setMoodState(mood);
   }
 
-  function handleMoodReset(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleMoodReset() {
     setMoodState(undefined);
   }
 
@@ -49,10 +49,10 @@ function App() {
               MOODS.map(mood =>
                 <button key={mood.value} value={mood.value} onClick={handleMoodState}>{mood.emoji}</button>
               ) :
-              <>
+              <div className="chosenMoodContainer">
                 <div className="chosenMood">My mood is {findMood()}</div>
                 <button onClick={handleMoodReset}>Reset</button>
-              </>
+              </div>
           }
         </div>
       </main>
