@@ -21,11 +21,15 @@ const MOODS = [
 ]
 
 function App() {
-  const [moodState, setMoodState] = useState<string | null>(null);
+  const [moodState, setMoodState] = useState<string | undefined>(undefined);
 
   function handleMoodState(e: React.MouseEvent<HTMLButtonElement>) {
     const mood = e.currentTarget.value;
     setMoodState(mood);
+  }
+
+  function handleMoodReset(e: React.MouseEvent<HTMLButtonElement>) {
+    setMoodState(undefined);
   }
 
   function findMood() {
@@ -41,11 +45,14 @@ function App() {
         <h2>Choose Your Mood Today</h2>
         <div className="moodContainer">
           {
-            moodState === null ?
+            moodState === undefined ?
               MOODS.map(mood =>
                 <button key={mood.value} value={mood.value} onClick={handleMoodState}>{mood.emoji}</button>
               ) :
-              <div className="chosenMood">My mood is {findMood()}</div>
+              <>
+                <div className="chosenMood">My mood is {findMood()}</div>
+                <button onClick={handleMoodReset}>Reset</button>
+              </>
           }
         </div>
       </main>
