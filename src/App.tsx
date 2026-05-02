@@ -21,7 +21,9 @@ const MOODS = [
 ]
 
 function App() {
-  const [moodState, setMoodState] = useState<string | undefined>(undefined);
+  const [moodState, setMoodState] = useState<string | undefined>(() => {
+    return localStorage.getItem("chosenMood") ?? undefined;
+  });
 
   function handleMoodState(e: React.MouseEvent<HTMLButtonElement>) {
     const mood = e.currentTarget.value;
