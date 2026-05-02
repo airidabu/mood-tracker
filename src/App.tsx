@@ -1,24 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import MOODS from "./data";
 
-const MOODS = [
-  {
-    value: "tired",
-    emoji: "😵"
-  },
-  {
-    value: "unhappy",
-    emoji: "😞"
-  },
-  {
-    value: "chill",
-    emoji: "😎"
-  },
-  {
-    value: "happy",
-    emoji: "😊"
-  }
-]
 
 function App() {
   const [moodState, setMoodState] = useState<string | undefined>(() => {
@@ -40,6 +23,19 @@ function App() {
     return MOODS.find((mood) => mood.value === moodState)?.emoji
   }
 
+  function renderMoods() {
+    return MOODS.map(mood =>
+      <button key={mood.value} value={mood.value} onClick={handleMoodState}>{mood.emoji}</button>
+    )
+  }
+
+  function renderChosenMood() {
+    return <div className="chosenMoodContainer">
+      <div className="chosenMood">My mood is {findMood()}</div>
+      <button onClick={handleMoodReset}>Reset</button>
+    </div>
+  }
+
   return (
     <div className="container">
       <header>
@@ -49,14 +45,7 @@ function App() {
         <h2>Choose Your Mood Today</h2>
         <div className="moodContainer">
           {
-            moodState === undefined ?
-              MOODS.map(mood =>
-                <button key={mood.value} value={mood.value} onClick={handleMoodState}>{mood.emoji}</button>
-              ) :
-              <div className="chosenMoodContainer">
-                <div className="chosenMood">My mood is {findMood()}</div>
-                <button onClick={handleMoodReset}>Reset</button>
-              </div>
+            moodState === undefined ? renderMoods() : renderChosenMood()
           }
         </div>
       </main>
