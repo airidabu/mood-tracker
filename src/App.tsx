@@ -26,10 +26,12 @@ function App() {
   function handleMoodState(e: React.MouseEvent<HTMLButtonElement>) {
     const mood = e.currentTarget.value;
     setMoodState(mood);
+    localStorage.setItem("chosenMood", mood);
   }
 
   function handleMoodReset() {
     setMoodState(undefined);
+    localStorage.removeItem("chosenMood");
   }
 
   function findMood() {
