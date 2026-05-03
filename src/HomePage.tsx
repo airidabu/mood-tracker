@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MOODS from "./data";
+import Calendar from "./components/Calendar";
 
 function HomePage() {
     const [moodState, setMoodState] = useState<string | undefined>(() => {
@@ -22,8 +23,16 @@ function HomePage() {
     }
 
     function renderMoods() {
-        return MOODS.map(mood =>
-            <button type="button" key={mood.value} value={mood.value} onClick={handleMoodState}>{mood.emoji}</button>
+        return (
+            <>
+                <Calendar />
+                <div className="moodButtons">
+                    {MOODS.map(mood =>
+                        <button aria-label={`Choose ${mood.value} mood`} type="button" key={mood.value} value={mood.value} onClick={handleMoodState}>{mood.emoji}</button>
+                    )}
+                </div>
+            </>
+
         )
     }
 
