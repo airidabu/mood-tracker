@@ -1,7 +1,8 @@
-function Calendar() {
-    const date = new Date().toLocaleDateString("lt-LT");
+type CalendarProps = {
+    date: string;
+}
 
-
+function Calendar({ date }: CalendarProps) {
     return (
         <div className="calendarContainer">
             {date}
