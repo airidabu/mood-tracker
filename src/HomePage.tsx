@@ -12,7 +12,13 @@ function HomePage() {
         return localStorage.getItem("chosenMood") ?? undefined;
     });
 
-    const date = new Date().toLocaleDateString("lt-LT");
+    const today = new Date();
+    const date = today.toLocaleDateString("lt-LT");
+
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    const yesterdayDate = yesterday.toLocaleDateString("lt-LT");
 
     function handleMoodState(e: React.MouseEvent<HTMLButtonElement>) {
         const mood = e.currentTarget.value;
@@ -58,7 +64,7 @@ function HomePage() {
     function renderChosenMood() {
         return <div className="chosenMoodContainer">
             <div>Today is {date}</div>
-            <div>Yesterday (date) mood was mood</div>
+            <div>Yesterday {yesterdayDate} mood was mood</div>
             <div className="chosenMood">My mood is {findMood()}</div>
             <button type="button" onClick={handleMoodReset}>Reset</button>
         </div>
