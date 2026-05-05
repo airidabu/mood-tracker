@@ -2,15 +2,34 @@ import { useState } from "react";
 import MOODS from "./data";
 import Calendar from "./components/Calendar";
 
+type MoodEntry = {
+    moodValue: string;
+    date: string;
+}
+
 function HomePage() {
     const [moodState, setMoodState] = useState<string | undefined>(() => {
         return localStorage.getItem("chosenMood") ?? undefined;
     });
 
+    const date = new Date().toLocaleDateString("lt-LT");
+
     function handleMoodState(e: React.MouseEvent<HTMLButtonElement>) {
         const mood = e.currentTarget.value;
         setMoodState(mood);
-        localStorage.setItem("chosenMood", mood);
+
+        const moodObject = {
+            moodValue: mood,
+            date: date
+        };
+
+        const savedMoods = localStorage.getItem("moods");
+        let moodArray: MoodEntry[] = savedMoods ? JSON.parse(savedMoods) : [];
+
+        moodArray = moodArray.filter((arr) => arr.date !== date);
+        moodArray.push(moodObject);
+
+        localStorage.setItem("moods", JSON.stringify(moodArray));
     }
 
     function handleMoodReset() {
@@ -21,8 +40,6 @@ function HomePage() {
     function findMood() {
         return MOODS.find((mood) => mood.value === moodState)?.emoji
     }
-
-    const date = new Date().toLocaleDateString("lt-LT");
 
     function renderMoods() {
         return (
