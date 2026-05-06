@@ -23,6 +23,7 @@ function HomePage() {
     function handleMoodState(e: React.MouseEvent<HTMLButtonElement>) {
         const mood = e.currentTarget.value;
         setMoodState(mood);
+        localStorage.setItem("chosenMood", mood);
 
         const moodObject = {
             moodValue: mood,
@@ -47,6 +48,15 @@ function HomePage() {
         return MOODS.find((mood) => mood.value === moodState)?.emoji
     }
 
+    function findYesterdaysMood() {
+        const savedMoods = localStorage.getItem("moods");
+        const moodArray: MoodEntry[] = savedMoods ? JSON.parse(savedMoods) : [];
+
+        const yesterdaysMood = moodArray.find((arr) => arr.date === yesterdayDate);
+
+        return MOODS.find((mood) => mood.value === yesterdaysMood?.moodValue)?.emoji;
+    }
+
     function renderMoods() {
         return (
             <>
@@ -64,7 +74,7 @@ function HomePage() {
     function renderChosenMood() {
         return <div className="chosenMoodContainer">
             <div>Today is {date}</div>
-            <div>Yesterday {yesterdayDate} mood was mood</div>
+            <div>Yesterday {yesterdayDate} mood was {findYesterdaysMood()}</div>
             <div className="chosenMood">My mood is {findMood()}</div>
             <button type="button" onClick={handleMoodReset}>Reset</button>
         </div>
