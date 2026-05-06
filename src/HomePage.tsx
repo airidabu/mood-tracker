@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MOODS from "./data";
 import MoodPicker from "./components/MoodPicker";
+import ChosenMood from "./components/ChosenMood";
 
 type MoodEntry = {
     moodValue: string;
@@ -57,21 +58,12 @@ function HomePage() {
         return MOODS.find((mood) => mood.value === yesterdaysMood?.moodValue)?.emoji;
     }
 
-    function renderChosenMood() {
-        return <div className="chosenMoodContainer">
-            <div>Today is {date}</div>
-            <div>Yesterday {yesterdayDate} mood was {findYesterdaysMood()}</div>
-            <div className="chosenMood">My mood is {findMood()}</div>
-            <button type="button" onClick={handleMoodReset}>Reset</button>
-        </div>
-    }
-
     return (
         <main>
             <h2>Choose Your Mood Today</h2>
             <div className="moodContainer">
                 {
-                    moodState === undefined ? <MoodPicker date={date} handleMoodState={handleMoodState} moods={MOODS} /> : renderChosenMood()
+                    moodState === undefined ? <MoodPicker date={date} handleMoodState={handleMoodState} moods={MOODS} /> : <ChosenMood date={date} yesterdayDate={yesterdayDate} findMood={findMood} findYesterdaysMood={findYesterdaysMood} handleMoodReset={handleMoodReset} />
                 }
             </div>
         </main>
