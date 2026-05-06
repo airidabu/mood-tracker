@@ -1,4 +1,9 @@
-const MOODS = [
+export type Mood = {
+    value: string;
+    emoji: string;
+}
+
+const MOODS: Mood[] = [
     {
         value: "tired",
         emoji: "😵"
