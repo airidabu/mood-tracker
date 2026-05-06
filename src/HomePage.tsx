@@ -60,10 +60,12 @@ function HomePage() {
 
     return (
         <main>
-            <h2>Choose Your Mood Today</h2>
+            <h2>Choose Your Mood</h2>
             <div className="moodContainer">
                 {
-                    moodState === undefined ? <MoodPicker date={date} handleMoodState={handleMoodState} moods={MOODS} /> : <ChosenMood date={date} yesterdayDate={yesterdayDate} findMood={findMood} findYesterdaysMood={findYesterdaysMood} handleMoodReset={handleMoodReset} />
+                    moodState === undefined
+                        ? <MoodPicker date={date} handleMoodState={handleMoodState} moods={MOODS} />
+                        : <ChosenMood date={date} yesterdayDate={yesterdayDate} findMood={findMood} findYesterdaysMood={findYesterdaysMood} handleMoodReset={handleMoodReset} />
                 }
             </div>
         </main>

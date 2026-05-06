@@ -48,10 +48,6 @@ button {
     gap: 10px;
 }
 
-.chosenMood {
-    font-size: 42px;
-}
-
 .chosenMoodContainer {
     display: flex;
     flex-direction: column;

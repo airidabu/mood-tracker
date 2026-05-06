@@ -1,3 +1,5 @@
+import styles from "./ChosenMood.module.css";
+
 type ChosenMoodProps = {
     date: string;
     yesterdayDate: string;
@@ -9,9 +11,9 @@ type ChosenMoodProps = {
 function ChosenMood({ date, yesterdayDate, findYesterdaysMood, findMood, handleMoodReset }: ChosenMoodProps) {
     return (
         < div className="chosenMoodContainer" >
-            <div>Today is {date}</div>
+            <div className={styles.todaysDate}>Today is {date}</div>
+            <div className={styles.todaysMood}>Today my mood is {findMood()}</div>
             <div>Yesterday {yesterdayDate} mood was {findYesterdaysMood()}</div>
-            <div className="chosenMood">My mood is {findMood()}</div>
             <button type="button" onClick={handleMoodReset}>Reset</button>
         </div >
     )
